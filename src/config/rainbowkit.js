@@ -8,6 +8,6 @@ export const config = getDefaultConfig({
     projectId: import.meta.env.VITE_WALLET_CONNECT_PROJECT_ID,
     chains: [sepolia],
     transports:{
-        [sepolia.id]: http("https://ethereum-sepolia-rpc.publicnode.com") 
+        [sepolia.id]: http("https://ethereum-sepolia-public.nodies.app") 
     }
 });

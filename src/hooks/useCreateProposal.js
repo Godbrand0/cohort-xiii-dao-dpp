@@ -21,9 +21,12 @@ const useCreateProposal = () => {
     watch: true,
   });
 
-  const treasuryValue = tressuryBalance.data.value ;
+  const treasuryValue =
+    tressuryBalance && tressuryBalance.data
+      ? tressuryBalance.data.value
+      : undefined;
 
-  return useCallback(
+  const createProposal = useCallback(
     async (description, recipient, amountInwei, durationInSeconds) => {
       if (!address || !walletClient) {
         toast.error("Not connected", {
@@ -37,7 +40,7 @@ const useCreateProposal = () => {
         });
         return;
       }
-      if (treasuryValue < amountInwei) {
+      if (treasuryValue < BigInt(amountInwei)) {
         toast.error("insufficient funds", {
           description: " there is not enough balance in the account",
         });
@@ -65,6 +68,7 @@ const useCreateProposal = () => {
     },
     [address, chairPerson, walletClient, writeContractAsync, treasuryValue]
   );
+  return { createProposal, treasuryValue };
 };
 
 export default useCreateProposal;

@@ -21,7 +21,7 @@ export function CreateProposalModal() {
   const [recipient, setRecipient] = useState("");
   const [amount, setAmount] = useState("");
   const [deadline, setDeadline] = useState();
-  const createProposal = useCreateProposal();
+   const {createProposal} = useCreateProposal();
 
   return (
     <Dialog>

@@ -4,13 +4,13 @@ import ProposalCard from "./components/ProposalCard";
 import useChairPerson from "./hooks/useChairPerson";
 import useProposals from "./hooks/useProposals.js";
 
-
 function App() {
   const chairPerson = useChairPerson();
   const proposals = useProposals();
+
   
 
-  console.log("proposals:", proposals);
+ 
 
   const activePropsals = proposals.filter(
     (proposal) => !proposal.executed || proposal.deadline * 1000 > Date.now()
